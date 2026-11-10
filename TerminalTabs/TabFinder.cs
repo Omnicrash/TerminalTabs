@@ -58,6 +58,29 @@ internal static partial class TabFinder
             // not focusable right now; the call below still tries
         }
         SetForegroundWindow(tab.Window);
+        FocusTerminal(tab);
+    }
+
+    // The keyboard goes to the tab's terminal, not its header, so typing works at once.
+    // The selected tab's terminal is the visible one; it may take a moment to swap in.
+    private static void FocusTerminal(TerminalTab tab)
+    {
+        var window = AutomationElement.FromHandle(tab.Window);
+        var termCondition = new PropertyCondition(AutomationElement.ClassNameProperty, "TermControl");
+        for (var i = 0; i < 10; i++) {
+            foreach (AutomationElement term in window.FindAll(TreeScope.Descendants, termCondition)) {
+                if (term.Current.IsOffscreen) {
+                    continue;
+                }
+                try {
+                    term.SetFocus();
+                    return;
+                } catch (InvalidOperationException) {
+                    // not ready yet; try again below
+                }
+            }
+            System.Threading.Thread.Sleep(50);
+        }
     }
 
     // Tab titles carry the shell's status marks in front (Claude's ✳, a spinner):
