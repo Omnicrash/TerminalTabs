@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "TerminalTabs (Package)": {
+      "commandName": "MsixPackage",
+      "doNotLaunchApp": true
+    },
+    "TerminalTabs (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
