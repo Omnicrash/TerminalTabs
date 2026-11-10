@@ -25,12 +25,12 @@ its window.
 You need Windows 11 with PowerToys, [Developer Mode](https://learn.microsoft.com/windows/advanced-settings/developer-mode)
 on, the .NET 10 SDK, and Visual Studio 2026 with the Windows App SDK (WinUI) workload.
 
-`build.cmd` builds the extension and registers it from its build folder, the way Visual
-Studio's Deploy does. Then, in Command Palette:
+`build.cmd` builds the extension, registers it from its build folder the way Visual
+Studio's Deploy does, and restarts Command Palette so it loads the new build. Then, in
+Command Palette:
 
-1. Run **Reload** (the one called "Reload Command Palette extensions").
-2. Type `terminal tabs` to open the list.
-3. To start it with `#`, open Command Palette's settings, find **Terminal tabs** under
+1. Type `terminal tabs` to open the list.
+2. To start it with `#`, open Command Palette's settings, find **Terminal tabs** under
    Extensions, and give it the alias `#` (or any other free symbol), marked as direct.
 
 ## License
